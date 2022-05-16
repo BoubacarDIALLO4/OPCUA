@@ -1,0 +1,24 @@
+# Create rg
+az group create --name rg-inf-test --location westeurope
+
+az sig create --resource-group rg-az-test --gallery-name myGallery
+
+# Galery ID#
+"id": "/subscriptions/47c1f798-c6b3-448a-81c8-6623a1f67e44/resourceGroups/rg-az-test/providers/Microsoft.Compute/galleries/myGallery",
+#
+
+az sig image-definition create --resource-group rg-az-test --gallery-name myGallery --gallery-image-definition myImageDefinition --publisher OpenLogic --offer Centos --sku 7.7 --os-type Linux --os-state specialized
+
+# ID : "id": "/subscriptions/47c1f798-c6b3-448a-81c8-6623a1f67e44/resourceGroups/rg-az-test/providers/Microsoft.Compute/galleries/myGallery/images/myImageDefinition",
+
+
+# 
+az sig image-version create --resource-group rg-az-test --gallery-name myGallery --gallery-image-definition myImageDefinition --gallery-image-version 1.0.0 --target-regions "westeurope=1" --managed-image "/subscriptions/47c1f798-c6b3-448a-81c8-6623a1f67e44/resourceGroups/rg-az-test/providers/Microsoft.Compute/virtualMachines/az104-07-vm0"
+
+
+# 
+az vmss create --resource-group rg-az-test --name myScaleSet --image "/subscriptions/47c1f798-c6b3-448a-81c8-6623a1f67e44/resourceGroups/rg-az-test/providers/Microsoft.Compute/galleries/myGallery/images/myImageDefinition" --specialized
+
+
+# list az vmss extension #
+az vmss extension list --resource-group shuivmss --vmss-name shui

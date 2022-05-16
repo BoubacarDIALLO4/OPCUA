@@ -1,0 +1,32 @@
+ sudo curlftpfs -o allow_other -o user:password 127.0.0.1:2121 /storage/mounted/robot
+
+curlftpfs -o user=user:password,ftp_port=- ftp://127.0.0.1:2121 /etc/robot
+
+sudo curlftpfs -o nonempty -o allow_other -o user=user:password,ftp_port=- ftp://127.0.0.1:2121 /etc/robot
+
+
+New-AzResourceGroupDeployment `
+   -ResourceGroupName $rgName `
+   -TemplateFile $HOME/az104-06-vms-loop-template.json `
+   -TemplateParameterFile $HOME/az104-06-vms-loop-parameters.json
+
+New-AzResourceGroupDeployment -ResourceGroupName $rgName -TemplateFile " C:\Users\1diallob\Desktop/AZ-104-MicrosoftAzureAdministrator/CI/template.json" -TemplateParameterFile " C:\Users\1diallob\De
+
+
+sktop/AZ-104-MicrosoftAzureAdministrator/CI/parameters.json"
+
+Add-AzVmssExtension -VirtualMachineScaleSet $
+    -Name "Microsoft.Azure.Monitoring.DependencyAgent" `
+    -Publisher "Microsoft.Azure.Monitoring.DependencyAgent" `
+    -Type "DependencyAgentWindows" `
+    -TypeHandlerVersion 9.5 `
+    -EnableAutomaticUpgrade $true
+
+
+az vmss extension set --resource-group rg-inf-test --vmss-name vmss-dsf-ci-centos7-bouba-cifx --name TeamServicesAgentLinux --publisher Microsoft.VisualStudio.Services --version 1.21 --enable-auto-upgrade true
+
+--settings '{"isPipelinesAgent": true, "agentFolder": "/agent",  "agentDownloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.202.0/vsts-agent-linux-x64-2.202.0.tar.gz","enableScriptDownloadUrl": "https://vstsagenttools.blob.core.windows.net/tools/ElasticPools/Linux/11/enableagent.sh"}'
+
+
+ az vmss extension set --resource-group rg-inf-dsf-ci --vmss-name vmss-dsf-ci-centos7-cifx-driver --name TeamServicesAgentLinux --publisher Microsoft.VisualStudio.Services --version 1.21 --enable-auto-upgrade false --settings '{"isPipelinesAgent": true, "agentFolder": "/agent", "agentDownloadUrl": "https://vstsagentpackage.azureedge.net/agent/2.202.0/vsts-agent-linux-x64-2.202.0.tar.gz","enableScriptDownloadUrl": "https://vstsagenttools.blob.core.windows.net/t
+ools/ElasticPools/Linux/11/enableagent.sh"}'
